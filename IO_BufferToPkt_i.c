@@ -9,6 +9,7 @@ Author(s): Manu Bansal
 
 #include "ORILIB_EthReaderBuffered_t.h"
 #include "IO_BufferToPkt_t.h"
+#include <ORILIB_util.h>
 
 static Uint32 seqs[30];
 static Uint32 sidx = 0;
@@ -63,6 +64,7 @@ void IO_BufferToPkt_i (
       //if (sidx == 0)
     	//  SW_BREAKPOINT;
     }
+
   }
   else {
     memset(pkt, 0, n_words_to_write << 2);

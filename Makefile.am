@@ -6,7 +6,8 @@ include $(top_srcdir)/Makefile.am.common
 #--------------------------------------
 noinst_LIBRARIES = lib.axiolib.a	#GNU naming convention
 lib_axiolib_a_SOURCES = \
-  IO_BufferToPkt_i.c
+  IO_BufferToPkt_i.c \
+  IO_CHDRPktToSampleBuf_i.c
 
 #
 
