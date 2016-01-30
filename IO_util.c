@@ -10,6 +10,21 @@ Author(s): Manu Bansal
 
 static platform_info p_I;
 
+void IO_printIPAddr(void * addr) {
+  unsigned char * p = (unsigned char *)addr;
+  printf("%u.%u.%u.%u", *p, *(p+1), *(p+2), *(p+3));
+}
+
+void IO_printMacAddr(void * addr) {
+  int i = 0;
+  unsigned char * p = (unsigned char *)addr;
+  for (i = 0; i < 5; i++) {
+    printf("%02x:", p[i]);
+  }
+  printf("%02x", p[i]);
+}
+
+
 void IO_parseMACAddr(char * macString, char * macArray) {
   int i;
   int values[6];

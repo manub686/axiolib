@@ -10,6 +10,8 @@ Author(s): Manu Bansal
 
 #include <ti/platform/platform.h>
 
+void IO_printIPAddr(void * addr);
+void IO_printMacAddr(void * addr);
 void IO_parseMACAddr(char * macString, char * macArray);
 void IO_init_platform_info();
 void IO_platform_get_info(platform_info * p_info);
