@@ -23,60 +23,34 @@ Author(s): Manu Bansal
 //#include "ORILIB_PLCPParser_t.h"
 
 #include "IO_util.h"
+#include "IO_EthUtil.h"
 
-//NET_MSS
-char pktBuf[1500];
 
 void IO_EthRawTx_i (
 	IN void * payload,
 	CF IO_t_EthRawTxConf * conf
       ){
-	char * pkt;
+  Uint32 pld_len;
 
-	platform_info pi;
-	NET_ip_packet * ip_pkt = NULL;
-	Uint32 pkt_len;
-	Uint32 pld_len;
+  //copy payload
+  if (conf->payload_length_in_bytes == 0) {
+    //treat payload container as a bit cache with data 
+    //capacity of conf->payload_container_length_in_bytes,
+    //followed by an unsigned int indicating number of valid
+    //bits in the container
+    pld_len = *(Uint32 *)(payload + conf->payload_container_length_in_bytes);
+    pld_len = pld_len/8;
+  }
+  else {
+    pld_len = conf->payload_length_in_bytes;
+  }
 
-	pkt = pktBuf;
-	ip_pkt = (NET_ip_packet *)pkt;
-	IO_platform_get_info(&pi);
-
-	//copy dst mac address into mac dst addr
-	memcpy(pkt, conf->dst_mac_address, 6);
-
-	//copy our mac address into mac src addr
-	memcpy(pkt + 6, pi.emac.efuse_mac_address, 6);
-
-	//set ethertype
-	memcpy(pkt + 12, &conf->ether_type, 2);
-
-	//copy payload
-	if (conf->payload_length_in_bytes == 0) {
-	  //treat payload container as a bit cache with data 
-	  //capacity of conf->payload_container_length_in_bytes,
-	  //followed by an unsigned int indicating number of valid
-	  //bits in the container
-	  pld_len = *(Uint32 *)(payload + conf->payload_container_length_in_bytes);
-	  pld_len = pld_len/8;
-	  memcpy(pkt + 14, payload, conf->payload_container_length_in_bytes);
-	  pkt_len = pld_len + 14 + 4;
-	}
-	else {
-	  memcpy(pkt + 14, payload, conf->payload_length_in_bytes);
-	  pkt_len = conf->payload_length_in_bytes + 14 + 4;
-	}
-
-	eth_send((uint8_t *)pkt, pkt_len);
-
-
-	DEBUG_INFO(
-	printf("EthRawTx: txPktLen: %d, ", pkt_len);
-	printf(" dst:");
-	eth_printMAC(ip_pkt->hw_header.dst_eth);
-	printf(" src:");
-	eth_printMAC(ip_pkt->hw_header.src_eth);
-	)
+  IO_EthRawTx_(
+	conf->dst_mac_address,
+	*(Uint16 *)conf->ether_type,
+	payload,
+	pld_len
+	);
 }
 
 

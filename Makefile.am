@@ -9,6 +9,7 @@ lib_axiolib_a_SOURCES = \
   IO_util.c \
   IO_BufferToPkt_i.c \
   IO_CHDRPktToSampleBuf_i.c \
+  IO_EthUtil.c \
   IO_EthRawTx_i.c
 
 #
