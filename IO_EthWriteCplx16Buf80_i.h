@@ -5,13 +5,7 @@
 #include "ORILIB_t.h"
 
 void IO_EthWriteCplx16Buf80_i (
-	IN ORILIB_t_Cplx16Buf80		* sampleBuf,
+	IN ORILIB_t_Cplx16Buf80		* sampleBuf
 	);
 
-//void IO_EthWriteCplx16Buf80_i (
-//	IN IO_t_CHDRHeaderState		* inpState,
-//	IN ORILIB_t_Cplx16Buf80		* sampleBuf,
-//	OUT IO_t_CHDRHeaderState	* outState 
-//	);
-//
 #endif
