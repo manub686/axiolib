@@ -9,6 +9,7 @@ Author(s): Manu Bansal
 #define IO_ETHUTIL_H 
 
 #include <osl/inc/swpform.h>
+#include <osl/inc/eth/eth.h>
 
 extern char IO_ethPktBuf[1500];
 
@@ -35,10 +36,7 @@ void IO_EthFillPayload(
 	);
 
 void IO_EthRawTx_(
-	char * dst_mac_address,
-	Uint16 ether_type,
-	char * payload,
-	Uint32 payload_len
+	Uint32 frame_len
 	);
 
 #endif /* IO_ETHUTIL_H */

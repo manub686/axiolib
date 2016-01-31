@@ -57,10 +57,7 @@ void IO_EthRawTx_i (
 	);
 
   IO_EthRawTx_(
-	conf->dst_mac_address,
-	*(Uint16 *)conf->ether_type,
-	payload,
-	pld_len
+	pld_len + 14 + 4
 	);
 }
 

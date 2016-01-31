@@ -91,26 +91,19 @@ void IO_EthFillPayload(
 }
 
 void IO_EthRawTx_(
-	char * dst_mac_address,
-	Uint16 ether_type,
-	char * payload,
-	Uint32 payload_len
+	Uint32 frame_len
 	){
 
 	NET_ip_packet * ip_pkt = NULL;
-	Uint32 pkt_len;
 	char * pkt;
-	Uint32 pld_len = payload_len;
 
 	pkt = IO_ethPktBuf;
 	ip_pkt = (NET_ip_packet *)pkt;
 
-	pkt_len = pld_len + 14 + 4;
-
-	eth_send((uint8_t *)pkt, pkt_len);
+	eth_send((uint8_t *)pkt, frame_len);
 
 	DEBUG_INFO(
-	printf("EthRawTx: txPktLen: %d, ", pkt_len);
+	printf("EthRawTx: txPktLen: %d, ", frame_len);
 	printf(" dst:");
 	eth_printMAC(ip_pkt->hw_header.dst_eth);
 	printf(" src:");
