@@ -12,6 +12,28 @@ Author(s): Manu Bansal
 
 extern char IO_ethPktBuf[1500];
 
+void IO_UDPFillHeader(
+	Uint16 srcPort,
+	Uint16 dstPort,
+	Uint16 udpLen
+	);
+
+void IO_IPFillHeader(
+	char * srcIP,
+	char * dstIP,
+	Uint8 proto
+	);
+
+void IO_EthFillHeader(
+	char * dst_mac_address,
+	Uint16 ether_type
+	);
+
+void IO_EthFillPayload(
+	char * payload, 
+	Uint32 pld_len
+	);
+
 void IO_EthRawTx_(
 	char * dst_mac_address,
 	Uint16 ether_type,

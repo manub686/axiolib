@@ -32,6 +32,7 @@ void IO_EthRawTx_i (
       ){
   Uint32 pld_len;
 
+
   //copy payload
   if (conf->payload_length_in_bytes == 0) {
     //treat payload container as a bit cache with data 
@@ -44,6 +45,16 @@ void IO_EthRawTx_i (
   else {
     pld_len = conf->payload_length_in_bytes;
   }
+
+  IO_EthFillHeader(
+  	conf->dst_mac_address, 
+	*(Uint16 *)conf->ether_type
+	);
+
+  IO_EthFillPayload(
+	payload, 
+	pld_len
+	);
 
   IO_EthRawTx_(
 	conf->dst_mac_address,
