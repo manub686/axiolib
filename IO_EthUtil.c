@@ -53,8 +53,8 @@ void IO_IPFillHeader(
 	memset(pkt + 14, 0, 20);
 
 	pkt[14     ] = 0x45; 	// IP version, hdr len
-	pkt[14 +  9] = 0x7f;	// IP ttl
-	pkt[14 + 10] = proto;	// protocol
+	pkt[14 +  8] = 0x7f;	// IP ttl
+	pkt[14 +  9] = proto;	// protocol
 	memcpy(pkt + 14 + 12, srcIP, 4);
 	memcpy(pkt + 14 + 16, dstIP, 4);
 }

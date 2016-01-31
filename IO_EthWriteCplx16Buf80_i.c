@@ -19,19 +19,20 @@ void IO_EthWriteCplx16Buf80_i (
 	Uint32 cvitaHeaderLen = 16;
 	Uint32 totalHeaderLen = 58;
 	Uint16 srcPort = 0x1234;
-	Uint16 dstPort = 49163;
+	Uint16 dstPort = 49153;
 	char srcIP[4] = {0xc0, 0xa8, 0xc0, 0xa8};	//192.168.192.168
 	char dstIP[4] = {0xc0, 0xa8, 0xc0, 0xa9};	//192.168.192.169
 	char dst_mac_address[6] = {0x40,0x5f,0xc2,0xc2,0x67,0x8d};
 	Uint16 ether_type = 0x0800;
-	Uint32 frame_len = 14 + 20 + 8 + 16 + 80 * 4 + 4;
+	//Uint32 frame_len = 14 + 20 + 8 + 16 + 80 * 4 + 4;
+	Uint32 frame_len = 14 + 20 + 8 + 16 + 80 * 4;
 	//Uint16 seqNo = inpState->seqNo;
 
 
 	// set 42 bytes of header :
 	// 14 for ethernet, 20 for ip, 8 for udp
 
-	IO_UDPFillHeader(srcPort, dstPort, 16 + 80 * 4);
+	IO_UDPFillHeader(srcPort, dstPort, 8 + 16 + 80 * 4);
 
 	IO_IPFillHeader(srcIP, dstIP, 0x11);	//0x11 is for UDP
 
