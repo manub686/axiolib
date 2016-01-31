@@ -11,6 +11,8 @@ void IO_EthWriteCplx16Buf80_i (
 	){
 	//IN IO_t_CHDRState		* inpState
 
+	static Uint16 seqNo = 0;
+
 	char * pkt;
 	pkt = IO_ethPktBuf;
 	NET_udphdr * udphdr = (NET_udphdr *)(pkt + 14 + 20);
@@ -41,8 +43,8 @@ void IO_EthWriteCplx16Buf80_i (
 
 	// Setting the CVITA header fields
 	// sequence number
-	//seqNo = (seqNo + 1) % 4096;
-	//memcpy(pkt + 14 + 20 + 8, &seqNo, 2);
+	seqNo = (seqNo + 1) % 4096;
+	memcpy(pkt + 14 + 20 + 8, &seqNo, 2);
 
 	// 80 samples in the buffer - each of 4 bytes
 	memcpy(pkt + totalHeaderLen, sampleBuf, 80*4);
