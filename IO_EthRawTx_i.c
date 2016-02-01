@@ -59,6 +59,13 @@ void IO_EthRawTx_i (
   IO_EthRawTx_(
 	pld_len + 14 + 4
 	);
+  // Assuming payload starts with a IP header
+  printf("outgoing : length = %u srcIP = ", pld_len + 14 + 4);
+  printIPAddr((Uint8 *) payload + 12);
+  printf(" destIP = ");
+  printIPAddr((Uint8 *) payload + 16);
+  Uint8 protocol = *((Uint8 *)payload + 9);
+  printf(" ip protocol = %u \n", protocol);
 }
 
 
