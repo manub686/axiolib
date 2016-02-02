@@ -11,7 +11,7 @@ Author(s): Manu Bansal
 #include "ORILIB_t.h"
 
 typedef struct {
-  char * dst_mac_addr;
+  char dst_mac_addr [6];
 } IO_t_EthWriteCplx16Buf80Conf;
 
 #endif /* IO_ETHWRITECPLX16BUF80_T_H */
