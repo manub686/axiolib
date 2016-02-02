@@ -48,8 +48,9 @@ void IO_EthWriteCplx16Buf80_i (
 
 	// 80 samples in the buffer - each of 4 bytes
 	memcpy(pkt + totalHeaderLen, sampleBuf, 80*4);
+	DEBUG_INFO(
 	printf(" outgoing packet of 80 samples with CHDRseqNo : %u\n", seqNo);
-
+	)
 	IO_EthRawTx_(frame_len); 
 }
 

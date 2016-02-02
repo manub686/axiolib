@@ -31,17 +31,20 @@ void IO_CHDRPktToSampleBuf_i (
   Uint32 n_words_to_write = 80;
 
   //debugging output
+  DEBUG_INFO(
   printf("srcIP: ");
   printIPAddr(sPkt + 26);
   printf(" dstIP: ");
   printIPAddr(sPkt + 30);
+  )
   memcpy(&seqNo, sPkt+42, 2); seqNo <<= 4; seqNo >>= 4;
+  DEBUG_INFO(
   printf(" udpSrcPort: %hu  udpDstPort: %hu CHDRseqNo: %hu\n",
       *(unsigned short *)(sPkt+34), 
       *(unsigned short *)(sPkt+36),
       seqNo
       ); 
-
+  )
   if ((state->lastSeqNo + 1) % 4096 != seqNo) {
     state->missing++;
     state->lastMissStride = (4096 + seqNo - state->lastSeqNo - 1) % 4096;
