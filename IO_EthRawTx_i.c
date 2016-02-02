@@ -48,7 +48,7 @@ void IO_EthRawTx_i (
 
   IO_EthFillHeader(
   	conf->dst_mac_address, 
-	*(Uint16 *)conf->ether_type
+	conf->ether_type
 	);
 
   IO_EthFillPayload(
