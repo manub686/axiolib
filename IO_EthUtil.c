@@ -15,6 +15,7 @@ Author(s): Manu Bansal
 #include "IO_util.h"
 
 //NET_MSS
+#pragma DATA_SECTION(IO_ethPktBuf, ".pkts")
 char IO_ethPktBuf[1500];
 
 void IO_UDPFillHeader(
