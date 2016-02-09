@@ -11,7 +11,8 @@ lib_axiolib_a_SOURCES = \
   IO_CHDRPktToSampleBuf_i.c \
   IO_EthWriteCplx16Buf80_i.c \
   IO_EthUtil.c \
-  IO_EthRawTx_i.c
+  IO_EthRawTx_i.c \
+  IO_EthStaticARPTx_i.c
 
 #
 
