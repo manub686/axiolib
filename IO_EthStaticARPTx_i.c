@@ -51,22 +51,35 @@ void IO_EthStaticARPTx_i (
 
   char dst_mac_addr[6];  
 
-  if (dst_ip == 0xc0a80201) {
-    char dst_mac_addr_string[] = "21.21.21.21.21.21";
+  //192.168.2.1
+  if (dst_ip == 0xc0a80201) {	
+    char dst_mac_addr_string[] = "00.08.dc.1e.cf.6b";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
 //    dst_mac_addr = {0x21, 0x21, 0x21, 0x21, 0x21, 0x21};
+
+  //192.168.2.2
   } else if (dst_ip == 0xc0a80202) {
-    char dst_mac_addr_string[] = "22.22.22.22.22.22";
+    char dst_mac_addr_string[] = "00.08.dc.1e.cf.6d";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
 //    dst_mac_addr = {0x22, 0x22, 0x22, 0x22, 0x22, 0x22};
+
+  //192.168.3.1
   } else if (dst_ip == 0xc0a80301) {
-    char dst_mac_addr_string[] = "31.31.31.31.31.31";
+    char dst_mac_addr_string[] = "c0.3f.d5.6e.3d.dd";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
 //    dst_mac_addr = {0x31, 0x31, 0x31, 0x31, 0x31, 0x31};
+
+  //192.168.3.2
   } else if (dst_ip == 0xc0a80302) {
-    char dst_mac_addr_string[] = "32.32.32.32.32.32";
+    char dst_mac_addr_string[] = "c0.3f.d5.6e.3d.dd";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
 //    dst_mac_addr = {0x32, 0x32, 0x32, 0x32, 0x32, 0x32};
+
+  //192.168.3.3
+  } else if (dst_ip == 0xc0a80303) {
+    char dst_mac_addr_string[] = "c0.3f.d5.6e.3d.dd";
+    IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
+//    dst_mac_addr = {0x33, 0x33, 0x33, 0x33, 0x33, 0x33};
   }
  
 
