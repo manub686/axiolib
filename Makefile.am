@@ -12,7 +12,8 @@ lib_axiolib_a_SOURCES = \
   IO_EthWriteCplx16Buf80_i.c \
   IO_EthUtil.c \
   IO_EthRawTx_i.c \
-  IO_EthIntfAddMAC_i.c
+  IO_EthIntfAddMAC_i.c \
+  IO_EthStaticARPTx_i.c
 
 #
 
