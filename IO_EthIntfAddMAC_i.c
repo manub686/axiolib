@@ -34,7 +34,7 @@ void IO_EthIntfAddMAC_i_conf (
   CF IO_t_EthIntfAddMACConf * conf,
   IN Uint64 mac_addr
   ) {
-
+  // Skip the 2 MSBs and copy the 6 LSBs
   memcpy(conf->mac, ((Uint8 *)&mac_addr) + 2, 6);
 
 }

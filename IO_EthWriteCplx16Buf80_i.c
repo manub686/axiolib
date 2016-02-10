@@ -57,7 +57,8 @@ void IO_EthWriteCplx16Buf80_i (
 
 void IO_EthWriteCplx16Buf80_i_conf(
 	CF IO_t_EthWriteCplx16Buf80Conf * conf,
-	IN char * dst_mac_addr
+	IN Uint64 dst_mac_addr
       ) {
-  IO_parseMACAddr(dst_mac_addr, conf->dst_mac_addr);
+  // Skip the 2 MSBs and copy the 6 LSBs
+  memcpy(conf->dst_mac_addr, ((Uint8 *)&dst_mac_addr) + 2, 6);
 }

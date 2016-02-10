@@ -12,6 +12,6 @@ void IO_EthWriteCplx16Buf80_i (
 
 void IO_EthWriteCplx16Buf80_i_conf(
 	CF IO_t_EthWriteCplx16Buf80Conf * conf,
-	IN char * dst_mac_addr
+	IN Uint64 dst_mac_addr
       );
 #endif

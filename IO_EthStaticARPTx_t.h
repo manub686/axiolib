@@ -11,6 +11,8 @@ Author(s): Manu Bansal
 #include <osl/inc/swpform.h>
 
 typedef struct {
+  Uint32 arp_table_ip[5];
+  Uint64 arp_table_mac[5];
   Uint16 ether_type;
   Uint32 payload_container_length_in_bytes;
   Uint32 payload_length_in_bytes;

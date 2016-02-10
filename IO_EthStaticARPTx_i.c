@@ -51,7 +51,16 @@ void IO_EthStaticARPTx_i (
 
   char dst_mac_addr[6];  
 
-  //192.168.2.1
+  Uint32 arp_table_length = sizeof(conf->arp_table_ip)/sizeof(conf->arp_table_ip[0]);
+
+  int index;
+  for (index = 0; index < arp_table_length; index++) {
+    if (dst_ip == conf->arp_table_ip[index]) {
+       // Skip the 2 MSBs and copy the 6 LSBs in the mac address
+       memcpy(dst_mac_addr, ((Uint8 *)&conf->arp_table_mac[index]) + 2, 6);
+    }
+  }
+/*  //192.168.2.1
   if (dst_ip == 0xc0a80201) {	
     char dst_mac_addr_string[] = "00.08.dc.1e.cf.6b";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
@@ -80,7 +89,7 @@ void IO_EthStaticARPTx_i (
     char dst_mac_addr_string[] = "c0.3f.d5.6e.3d.dd";
     IO_parseMACAddr(dst_mac_addr_string, dst_mac_addr);
 //    dst_mac_addr = {0x33, 0x33, 0x33, 0x33, 0x33, 0x33};
-  }
+  }*/
  
 
   IO_EthFillHeader(
@@ -110,10 +119,26 @@ void IO_EthStaticARPTx_i (
 
 void IO_EthStaticARPTx_i_conf (
 	CF IO_t_EthStaticARPTxConf * conf,
+	IN Uint64 mac_addr_2_1,
+	IN Uint64 mac_addr_2_2,
+	IN Uint64 mac_addr_3_1,
+	IN Uint64 mac_addr_3_2,
+	IN Uint64 mac_addr_3_3,
 	IN Uint16 ether_type,
 	IN Uint32 payload_container_length_in_bytes,
 	IN Uint32 payload_length_in_bytes
       ) {
+  conf->arp_table_ip[0] = 0xc0a80201;
+  conf->arp_table_mac[0] = mac_addr_2_1;
+  conf->arp_table_ip[1] = 0xc0a80202;
+  conf->arp_table_mac[1] = mac_addr_2_2;
+  conf->arp_table_ip[2] = 0xc0a80301;
+  conf->arp_table_mac[2] = mac_addr_3_1;
+  conf->arp_table_ip[3] = 0xc0a80302;
+  conf->arp_table_mac[3] = mac_addr_3_2;
+  conf->arp_table_ip[4] = 0xc0a80303;
+  conf->arp_table_mac[4] = mac_addr_3_3;
+
   conf->ether_type = ether_type;
   conf->payload_container_length_in_bytes = payload_container_length_in_bytes;
   conf->payload_length_in_bytes = payload_length_in_bytes;
