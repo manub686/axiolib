@@ -94,7 +94,7 @@ void IO_EthStaticARPTx_i (
 
   IO_EthFillHeader(
   	dst_mac_addr, 
-	conf->ether_type
+	0x0800
 	);
 
   IO_EthFillPayload(
@@ -119,27 +119,30 @@ void IO_EthStaticARPTx_i (
 
 void IO_EthStaticARPTx_i_conf (
 	CF IO_t_EthStaticARPTxConf * conf,
-	IN Uint64 mac_addr_2_1,
-	IN Uint64 mac_addr_2_2,
-	IN Uint64 mac_addr_3_1,
-	IN Uint64 mac_addr_3_2,
-	IN Uint64 mac_addr_3_3,
-	IN Uint16 ether_type,
+	IN Uint32 node_0_ip,
+	IN Uint64 node_0_mac,
+	IN Uint32 node_1_ip,
+	IN Uint64 node_1_mac,
+	IN Uint32 node_2_ip,
+	IN Uint64 node_2_mac,
+	IN Uint32 node_3_ip,
+	IN Uint64 node_3_mac,
+	IN Uint32 node_4_ip,
+	IN Uint64 node_4_mac,
 	IN Uint32 payload_container_length_in_bytes,
 	IN Uint32 payload_length_in_bytes
       ) {
-  conf->arp_table_ip[0] = 0xc0a80201;
-  conf->arp_table_mac[0] = mac_addr_2_1;
-  conf->arp_table_ip[1] = 0xc0a80202;
-  conf->arp_table_mac[1] = mac_addr_2_2;
-  conf->arp_table_ip[2] = 0xc0a80301;
-  conf->arp_table_mac[2] = mac_addr_3_1;
-  conf->arp_table_ip[3] = 0xc0a80302;
-  conf->arp_table_mac[3] = mac_addr_3_2;
-  conf->arp_table_ip[4] = 0xc0a80303;
-  conf->arp_table_mac[4] = mac_addr_3_3;
+  conf->arp_table_ip[0] = node_0_ip;
+  conf->arp_table_mac[0] = node_0_mac;
+  conf->arp_table_ip[1] = node_1_ip;
+  conf->arp_table_mac[1] = node_1_mac;
+  conf->arp_table_ip[2] = node_2_ip;
+  conf->arp_table_mac[2] = node_2_mac;
+  conf->arp_table_ip[3] = node_3_ip;
+  conf->arp_table_mac[3] = node_3_mac;
+  conf->arp_table_ip[4] = node_4_ip;
+  conf->arp_table_mac[4] = node_4_mac;
 
-  conf->ether_type = ether_type;
   conf->payload_container_length_in_bytes = payload_container_length_in_bytes;
   conf->payload_length_in_bytes = payload_length_in_bytes;
 }

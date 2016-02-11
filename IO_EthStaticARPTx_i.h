@@ -17,12 +17,16 @@ void IO_EthStaticARPTx_i (
 
 void IO_EthStaticARPTx_i_conf (
 	CF IO_t_EthStaticARPTxConf * conf,
-	IN Uint64 mac_addr_2_1,
-	IN Uint64 mac_addr_2_2,
-	IN Uint64 mac_addr_3_1,
-	IN Uint64 mac_addr_3_2,
-	IN Uint64 mac_addr_3_3,
-	IN Uint16 ether_type,
+	IN Uint32 node_0_ip,
+	IN Uint64 node_0_mac,
+	IN Uint32 node_1_ip,
+	IN Uint64 node_1_mac,
+	IN Uint32 node_2_ip,
+	IN Uint64 node_2_mac,
+	IN Uint32 node_3_ip,
+	IN Uint64 node_3_mac,
+	IN Uint32 node_4_ip,
+	IN Uint64 node_4_mac,
 	IN Uint32 payload_container_length_in_bytes,
 	IN Uint32 payload_length_in_bytes
       );
