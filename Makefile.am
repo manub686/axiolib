@@ -13,7 +13,8 @@ lib_axiolib_a_SOURCES = \
   IO_EthUtil.c \
   IO_EthRawTx_i.c \
   IO_EthIntfAddMAC_i.c \
-  IO_EthStaticARPTx_i.c
+  IO_EthStaticARPTx_i.c \
+  IO_EthPacketCounter_i.c
 
 #
 
