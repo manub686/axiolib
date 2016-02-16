@@ -18,12 +18,16 @@ Author(s): Manu Bansal
 #include "ORILIB_util.h"
 #include "IO_EthPacketCounter_t.h"
 
+#pragma DATA_ALIGN(aligned4PktBuf_PktCounter, 4);
+static char aligned4PktBuf_PktCounter[1536];
+
 void IO_EthPacketCounter_i (
 	IN IO_t_EthPacketCounterState	* state,
 	CF IO_EthPacketCounterConf	* conf
 	) {
 
   Uint8* rx_packet = NULL;
+  void* pkt = NULL;
   Uint32 rx_packet_len = 0;
   Int32 qid;
   Uint32 blocked = 1;
@@ -47,10 +51,13 @@ void IO_EthPacketCounter_i (
     ret = eth_recv(&rx_packet, &rx_packet_len, 0);
     curr_tsc = CSL_tscRead();
     if (ret < 0) { continue; }
+	
+    memcpy(aligned4PktBuf_PktCounter, rx_packet, 1536);
+    pkt = aligned4PktBuf_PktCounter;
 
     void (*filter)(void *, Uint32, Int32 * qid, Uint32 *);
     filter = conf->filter;
-    (*filter)(rx_packet, rx_packet_len, &qid, (Uint32 *)NULL);
+    (*filter)(pkt, rx_packet_len, &qid, (Uint32 *)NULL);
 
     if (qid < 0 || qid >= IO_ETHPACKETCOUNTER_N_QUEUES) {
       DEBUG_DATA(

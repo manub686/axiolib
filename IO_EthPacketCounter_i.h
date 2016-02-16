@@ -18,7 +18,7 @@ void IO_EthPacketCounter_i_conf (
 	CF IO_EthPacketCounterConf	* conf,
 	Uint64 timeout,
 	void (*filter)(void *, Uint32, Int32 *, Uint32 *),
-	In32 block_on_queue
+	Int32 block_on_queue
 	);
 
 #endif /* IO_ETHPACKETCOUNTER_I_H */
